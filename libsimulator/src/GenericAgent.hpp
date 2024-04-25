@@ -35,6 +35,7 @@ struct GenericAgent {
         CollisionFreeSpeedModelV2Data,
         SocialForceModelData>;
     Model model{};
+    uint8_t iterationsUntilRouting{};
 
     GenericAgent(
         ID id_,

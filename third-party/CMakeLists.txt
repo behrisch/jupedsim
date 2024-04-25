@@ -45,6 +45,10 @@ find_package(CGAL 5.5
 ################################################################################
 set(Python_FIND_VIRTUALENV "FIRST")
 find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
+set_target_properties(Python::Module 
+    PROPERTIES
+        MAP_IMPORTED_CONFIG_DEBUG ";RELEASE"
+)
 set(PYBIND11_SIMPLE_GIL_MANAGEMENT ON)
 set(PYBIND11_NUMPY_1_ONLY ON)
 set(PYBIND11_FINDPYTHON ON)

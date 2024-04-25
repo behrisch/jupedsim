@@ -19,9 +19,10 @@ Simulation::Simulation(
     : _clock(dT), _operationalDecisionSystem(std::move(operationalModel))
 {
     const auto p = geometry->Polygon();
+    const auto id = geometry->Id();
     const auto& [tup, res] = geometries.emplace(
         std::piecewise_construct,
-        std::forward_as_tuple(geometry->Id()),
+        std::forward_as_tuple(id),
         std::forward_as_tuple(std::move(geometry), std::make_unique<RoutingEngine>(p)));
     if(!res) {
         throw SimulationError("Internal error");
@@ -337,9 +338,10 @@ void Simulation::SwitchGeometry(std::unique_ptr<CollisionGeometry>&& geometry)
         _routingEngine = std::get<1>(iter->second).get();
     } else {
         const auto p = geometry->Polygon();
+        const auto id = geometry->Id();
         const auto& [tup, res] = geometries.emplace(
             std::piecewise_construct,
-            std::forward_as_tuple(geometry->Id()),
+            std::forward_as_tuple(id),
             std::forward_as_tuple(std::move(geometry), std::make_unique<RoutingEngine>(p)));
         if(!res) {
             throw SimulationError("Internal error");

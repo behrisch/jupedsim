@@ -53,10 +53,10 @@ def main():
         ),
         dt=0.02,
         geometry=geo,
-        # trajectory_writer=jps.SqliteTrajectoryWriter(
-        #     output_file=pathlib.Path("fanwalk_freiligrathplatz_5k_5min.sqlite"),
-        #     every_nth_frame=10,
-        # ),
+        trajectory_writer=jps.SqliteTrajectoryWriter(
+            output_file=pathlib.Path("fanwalk_freiligrathplatz_5k_5min.sqlite"),
+            every_nth_frame=10,
+        ),
     )
     simulation.set_tracing(True)
 

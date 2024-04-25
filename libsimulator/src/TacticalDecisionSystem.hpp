@@ -20,7 +20,12 @@ public:
     {
         for(auto& agent : agents) {
             const auto dest = agent.target;
-            agent.destination = routingEngine.ComputeWaypoint(agent.pos, dest);
+            if(agent.iterationsUntilRouting == 0) {
+                agent.destination = routingEngine.ComputeWaypoint(agent.pos, dest);
+                agent.iterationsUntilRouting = 20;
+            } else {
+                --agent.iterationsUntilRouting;
+            }
         }
     }
 };

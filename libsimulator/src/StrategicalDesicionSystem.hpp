@@ -28,9 +28,12 @@ public:
     {
         for(auto& agent : agents) {
             const auto [target, id] = journeys.at(agent.journeyId)->Target(agent);
-            agent.target = target;
-            stageManager.MigrateAgent(agent.stageId, id);
-            agent.stageId = id;
+            if(agent.target != target || agent.stageId != id) {
+                agent.target = target;
+                stageManager.MigrateAgent(agent.stageId, id);
+                agent.stageId = id;
+                agent.iterationsUntilRouting = 0;
+            }
         }
     }
 };
