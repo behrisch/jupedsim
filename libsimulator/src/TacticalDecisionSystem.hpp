@@ -22,7 +22,10 @@ public:
             const auto dest = agent.target;
             if(agent.iterationsUntilRouting == 0) {
                 agent.destination = routingEngine.ComputeWaypoint(agent.pos, dest);
-                agent.iterationsUntilRouting = 20;
+                const auto sqared_distance = DistanceSquared(agent.pos, agent.destination);
+                if(sqared_distance >= 0.09) {
+                    agent.iterationsUntilRouting = 20;
+                }
             } else {
                 --agent.iterationsUntilRouting;
             }
