@@ -31,16 +31,16 @@ public:
     std::tuple<double, Point> NormAndNormalized() const;
 
     /// dot product
-    inline double ScalarProduct(const Point& v) const { return x * v.x + y * v.y; }
+    inline double ScalarProduct(const Point v) const { return x * v.x + y * v.y; }
 
-    inline double CrossProduct(const Point& p) const { return Determinant(p); }
+    inline double CrossProduct(const Point p) const { return Determinant(p); }
 
     /// determinant of the square matrix formed by the vectors [ this, v]
-    inline double Determinant(const Point& v) const { return x * v.y - y * v.x; }
+    inline double Determinant(const Point v) const { return x * v.y - y * v.x; }
 
-    Point TransformToEllipseCoordinates(const Point& center, double cphi, double sphi) const;
+    Point TransformToEllipseCoordinates(const Point center, double cphi, double sphi) const;
     /// translation and rotation in cartesian system
-    Point TransformToCartesianCoordinates(const Point& center, double cphi, double sphi) const;
+    Point TransformToCartesianCoordinates(const Point center, double cphi, double sphi) const;
     /// rotate the vector by theta
     Point Rotate(double ctheta, double stheta) const;
 
@@ -54,41 +54,41 @@ public:
 
     // operators
     /// addition
-    const Point operator+(const Point& p) const;
+    const Point operator+(const Point p) const;
     /// substraction
-    const Point operator-(const Point& p) const;
+    const Point operator-(const Point p) const;
     /// equal
-    bool operator==(const Point& p) const;
+    bool operator==(const Point p) const;
     /// not equal
-    bool operator!=(const Point& p) const;
+    bool operator!=(const Point p) const;
     /// Assignement
-    Point& operator+=(const Point& p);
+    Point& operator+=(const Point p);
 
-    bool operator<(const Point& rhs) const;
+    bool operator<(const Point rhs) const;
 
-    bool operator>(const Point& rhs) const;
+    bool operator>(const Point rhs) const;
 
-    bool operator<=(const Point& rhs) const;
+    bool operator<=(const Point rhs) const;
 
-    bool operator>=(const Point& rhs) const;
+    bool operator>=(const Point rhs) const;
 };
 
 /// Euclidean distance between 'a' and 'b'
 /// @param [in] Point a
 /// @param [in] Point b
 /// @return distance between 'a' and 'b'
-double Distance(const Point& a, const Point& b);
+double Distance(const Point a, const Point b);
 
 /// Squared euclidean distance between 'a' and 'b'
 /// @param [in] Point a
 /// @param [in] Point b
 /// @return distance between 'a' and 'b'
-double DistanceSquared(const Point& a, const Point& b);
+double DistanceSquared(const Point a, const Point b);
 
 /// multiplication
-const Point operator*(const Point& p, const double f);
+const Point operator*(const Point p, const double f);
 /// division
-const Point operator/(const Point& p, const double f);
+const Point operator/(const Point p, const double f);
 
 template <>
 struct fmt::formatter<Point> {

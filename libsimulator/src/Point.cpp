@@ -85,7 +85,7 @@ OC  = -O1O +O1C
 xnew = -xc + x
 
 */
-Point Point::TransformToEllipseCoordinates(const Point& center, double cphi, double sphi) const
+Point Point::TransformToEllipseCoordinates(const Point center, double cphi, double sphi) const
 {
     Point p = Point(x, y);
     return (p - center).Rotate(cphi, -sphi);
@@ -110,7 +110,7 @@ where the coord. of a point are transformated to cart. coord.
 
 */
 
-Point Point::TransformToCartesianCoordinates(const Point& center, double cphi, double sphi) const
+Point Point::TransformToCartesianCoordinates(const Point center, double cphi, double sphi) const
 {
     Point p = Point(x, y);
     return (p.Rotate(cphi, sphi) + center);
@@ -137,39 +137,39 @@ bool Point::IsUnitLength() const
     return std::abs(1 - NormSquare()) <= std::numeric_limits<double>::epsilon();
 }
 
-const Point Point::operator+(const Point& p) const
+const Point Point::operator+(const Point p) const
 {
     return Point(x + p.x, y + p.y);
 }
 
-const Point Point::operator-(const Point& p) const
+const Point Point::operator-(const Point p) const
 {
     return Point(x - p.x, y - p.y);
 }
 
-bool Point::operator==(const Point& p) const
+bool Point::operator==(const Point p) const
 {
     return x == p.x && y == p.y;
 }
 
-bool Point::operator!=(const Point& p) const
+bool Point::operator!=(const Point p) const
 {
     return !(*this == p);
 }
 
-const Point operator*(const Point& p, double f)
+const Point operator*(const Point p, double f)
 {
     return Point(p.x * f, p.y * f);
 }
 
-Point& Point::operator+=(const Point& p)
+Point& Point::operator+=(const Point p)
 {
     x += p.x;
     y += p.y;
     return *this;
 }
 
-const Point operator/(const Point& p, double f)
+const Point operator/(const Point p, double f)
 {
     static auto constexpr eps =
         std::numeric_limits<double>::epsilon() * std::numeric_limits<double>::epsilon();
@@ -181,7 +181,7 @@ const Point operator/(const Point& p, double f)
     }
 }
 
-bool Point::operator<(const Point& rhs) const
+bool Point::operator<(const Point rhs) const
 {
     if(x < rhs.x)
         return true;
@@ -190,27 +190,27 @@ bool Point::operator<(const Point& rhs) const
     return false;
 }
 
-bool Point::operator>(const Point& rhs) const
+bool Point::operator>(const Point rhs) const
 {
     return rhs < *this;
 }
 
-bool Point::operator<=(const Point& rhs) const
+bool Point::operator<=(const Point rhs) const
 {
     return !(rhs < *this);
 }
 
-bool Point::operator>=(const Point& rhs) const
+bool Point::operator>=(const Point rhs) const
 {
     return !(*this < rhs);
 }
 
-double Distance(const Point& point1, const Point& point2)
+double Distance(const Point point1, const Point point2)
 {
     return (point1 - point2).Norm();
 }
 
-double DistanceSquared(const Point& a, const Point& b)
+double DistanceSquared(const Point a, const Point b)
 {
     return (a - b).NormSquare();
 }
